@@ -17,7 +17,7 @@ project?=default
 
 start:
 	@echo "Starting the project..."
-	@docker-compose up -d hasura-cli adminer app-backoffice app-form
+	@docker-compose up -d hasura-cli adminer app-backoffice app-survey
 	@docker-compose logs -f
 
 start-be:
@@ -29,9 +29,9 @@ start-backoffice:
 	@echo "Starting App Backoffice..."
 	@(cd app-backoffice && npm install && npm start)
 
-start-form:
-	@echo "Starting App Form..."
-	@(cd app-form && npm install && npm start)
+start-survey:
+	@echo "Starting App Survey..."
+	@(cd app-survey && npm install && npm start)
 
 stop:
 	@echo "Stopping the project..."
@@ -42,7 +42,7 @@ logs:
 
 clear: stop
 	@echo "Destroy local data..."
-	@sudo rm -rf .docker-data
+	@docker run --rm -v $(PWD):/data alpine:3.16 rm -rf ./data/.docker-data
 
 restart: stop start
 reset: stop clear start

@@ -1,1 +1,1 @@
-DROP TABLE survey;
+DROP TABLE survey CASCADE;

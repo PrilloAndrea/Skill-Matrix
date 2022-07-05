@@ -1,0 +1,1 @@
+DROP TRIGGER set_public_answers_updated_at ON answers;

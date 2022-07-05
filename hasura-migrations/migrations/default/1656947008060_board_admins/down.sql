@@ -1,1 +1,1 @@
-DROP TABLE board_admins;
+DROP TABLE boards_admins CASCADE;

@@ -1,6 +1,7 @@
-CREATE TABLE IF NOT EXISTS board_admins(
-admin_id serial ,
-board_id serial,
-CONSTRAINT "admin_pkey" PRIMARY KEY ("admin_id"),
-FOREIGN KEY(board_id) REFERENCES boards(board_id)
+CREATE TABLE IF NOT EXISTS boards_admins (
+  board_id INT NOT NULL, 
+  user_id INT NOT NULL,
+  CONSTRAINT "board_admins_pkey" PRIMARY KEY ("board_id", "user_id"),
+  CONSTRAINT "boards_admins_board_id_fkey" FOREIGN KEY("board_id") REFERENCES "boards"("board_id"),
+  CONSTRAINT "boards_admins_user_id_fkey" FOREIGN KEY("user_id") REFERENCES "users"("user_id")
 );

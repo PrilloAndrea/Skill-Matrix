@@ -1,1 +1,1 @@
-DROP TABLE boards;
+DROP TABLE boards CASCADE;
