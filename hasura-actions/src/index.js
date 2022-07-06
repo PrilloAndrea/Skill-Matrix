@@ -10,6 +10,7 @@ const hasuraClient = require("./services/hasura-client");
 // Local Feature
 const ping = require("./features/ping");
 const testHasuraClient = require("./features/test-hasura-client");
+const createAnswer = require("./features/createAnswer");
 
 // Validate the environment
 const env = envalid.cleanEnv(process.env, {
@@ -38,5 +39,5 @@ forrest.run({
     }
   },
   services: [serviceLogger, hasuraClient, serviceFastify, serviceHealthz],
-  features: [ping, testHasuraClient]
+  features: [ping,createAnswer, testHasuraClient]
 });

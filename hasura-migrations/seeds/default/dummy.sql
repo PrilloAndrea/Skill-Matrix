@@ -23,7 +23,7 @@ SELECT
 b AS "board_id",
 CONCAT('Board', "b") AS "name"
 
-FROM generate_series(1, 10) AS "b"
+FROM generate_series(1, 3) AS "b"
 
 ON CONFLICT ON CONSTRAINT "boards_pkey"
 DO UPDATE SET
@@ -35,7 +35,7 @@ INSERT INTO "public"."boards_admins" ("board_id", "user_id")
  
 SELECT 
   b AS "board_id",
-  (floor(random() * (10 - 1 + 1) + 1)) AS "user_id"
+  (floor(random() * (3 - 1 + 1) + 1)) AS "user_id"
  
 FROM generate_series(1, 2) AS "b"
 ;
@@ -48,7 +48,7 @@ INSERT INTO "public"."survey" ("board_id", "created_at", "updated_at", "opens_at
  
 SELECT
  
-  (floor(random() * (10 - 1 +1) +1)) AS "board_id",
+  (floor(random() * (3 - 1 +1) +1)) AS "board_id",
  
   now() - '30d'::INTERVAL * random() AS "created_at",
  
@@ -81,14 +81,13 @@ DO UPDATE SET
 --Insert into table questions
 
 
-INSERT INTO "public"."questions" ("board_id", "type", "data", "created_at")
+INSERT INTO "public"."questions" ("board_id",  "type", "data", "created_at")
  
  
  
 SELECT
  
-  (floor(random() * (10 - 1 +1) +1)) AS "board_id",
- 
+  (floor(random() * (3 - 1 +1) +1)) AS "board_id", 
   'checkbox' AS "type",
  
 '{"question":"WHo","Answers":["1","2"]}' AS "data",
@@ -105,28 +104,29 @@ ON CONFLICT ON CONSTRAINT "question_pkey"
 DO UPDATE SET  
  
   "board_id" = EXCLUDED."board_id",
+
  
   "created_at" = EXCLUDED."created_at",
  
 "type" = EXCLUDED."type",
- 
-    "is_deleted" = EXCLUDED."is_deleted",
- 
+  
     "data" = EXCLUDED."data";
 
 
     --///////////////////////////////////////////////////////////////////////////////////////////--
     --Inserted values into aswers
 
-INSERT INTO "public"."answers" ("user_id", "board_id", "question_id", "created_at", "updated_at", "score", "notes", "data")
+INSERT INTO "public"."answers" ("user_id","survey_id","board_id", "question_id", "created_at", "updated_at", "score", "notes", "data")
  
 SELECT
  
   (floor(random() * (10 - 1 +1) +1)) AS "user_id",
+
+  (floor(random() * (5 - 1 +1) +1)) AS "survey_id",
+
+  (floor(random() * (3 - 1 +1) +1)) AS "board_id",
  
-  (floor(random() * (10 - 1 +1) +1)) AS "board_id",
- 
-  (floor(random() * (10 - 1 +1) +1)) AS "question_id",
+  (floor(random() * (50 - 1 +1) +1)) AS "question_id",
  
   now() - '30d'::INTERVAL * random() AS "created_at",
  
@@ -147,6 +147,8 @@ SELECT
 ON CONFLICT ON CONSTRAINT "answer_pkey"
  
 DO UPDATE SET  "user_id" = EXCLUDED."user_id",
+    
+  "survey_id" = EXCLUDED."survey_id",
  
   "board_id" = EXCLUDED."board_id",
  
