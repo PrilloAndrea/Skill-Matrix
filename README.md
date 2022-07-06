@@ -44,6 +44,30 @@ Day 2:
 
 ######################################################################################################################################################################
 
+Day 3. 
+   1.	Day 3 was a really difficult for our team and we think in one point we have failed to create or to manage our ideas for creating backend and API session, because       we tried to created api with hasura-actions but something went wrong and we didn’t get the result we were expected. 
+
+
+   2.	Me and my team tried a lot of different ways but couldn’t fixed the problem we faced. Tables created in our database with our request from query actions was           really difficult to create and receive the right data.  
+
+
+   3.	First error was “status:500”, this error was present cause of our poor connection with database. The 500 error was handled by our TeamLeader by correcting the         connection between hasura and backend.
+
+
+   4.	Second error was "unexpected response" . This error happened because the database had no relations with the backend part. After a little while of research we           found the solution on github.
+
+
+   5.	Another error we faced was “webhook handler”, this kind of error was handled with the help of our senior colleges. 
+
+
+   6.	So we thought that it was the last error but we were wrong,  cause the result we had wasn’t the expected one for our main idea. Actions in Graphql Hasura               database is our main focus in this days. Our ideas are growing in every moment and we have already tried almost all of them. 
+
+
+   7.	Youtube, react docs, hasura docs, stackoverflow, our seniors colleges here are our best shot to improve our skills to deal with our errors.
+
+
+######################################################################################################################################################################
+
 
 
  
