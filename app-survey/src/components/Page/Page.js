@@ -38,15 +38,18 @@ export const Page = ({ title, actions, withPadding, children, ...props }) => (
     }}
   >
     {(title || actions) && <PageTitle actions={actions}>{title}</PageTitle>}
-    <Box
-      sx={{
-        pl: withPadding ? 2 : 0,
-        pr: withPadding ? 2 : 0,
-        pt: withPadding ? 2 : 0,
-        pb: withPadding ? 2 : 0
-      }}
-    >
-      {children}
-    </Box>
+
+
+    <Box
+      sx={{
+        pl: withPadding ? 67: 0,
+        pr: withPadding ? 2 : 0,
+        pt: withPadding ? 20 : 0,
+        pb: withPadding ? 35 : 0
+      }}
+    >
+      {children}
+    </Box>
+
   </Paper>
 );
