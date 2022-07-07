@@ -68,7 +68,20 @@ Day 3.
 
 ######################################################################################################################################################################
 
+Day 4
+•	As I told that day 3 was a total failer for us day 4 was nothing like that.
 
+•	We carried on and tried creating the API with React Query and it was a great try because we successfully  fetched the data we wanted from the database. Of course it was not easy to do but with a little search and the help of our colleges we managed to do it.
+
+•	One error that I faced was “ {"errors":[{"extensions":{"code":"validation-failed","path":"$.selectionSet.questions"},"message":"field \"questions\" not found in type: 'query_root'"}]} ”. For this error I found on stackoverflow that I didn’t had permission so I change the hasura permissions and everythik worked fine.
+
+•	The second error was that when I tried to make 2 query on the same component one of them showed undefined data on console and the right data on network. I find by the help of Enea that the problem was that we cant ose 2 ReactQuery in 1 components.
+
+•	Another error was “ Too many re-randers ” . This error was caused because I was setting data to one object every second.
+
+•	In the end we managed to make a list of questions and show them on frontend.
+
+##############################################################################################################################################################33
 
  
 
