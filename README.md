@@ -69,6 +69,7 @@ Day 3.
 ######################################################################################################################################################################
 
 Day 4
+
 •	As I told that day 3 was a total failer for us day 4 was nothing like that.
 
 •	We carried on and tried creating the API with React Query and it was a great try because we successfully  fetched the data we wanted from the database. Of course it was not easy to do but with a little search and the help of our colleges we managed to do it.
