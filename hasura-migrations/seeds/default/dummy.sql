@@ -90,7 +90,7 @@ SELECT
   (floor(random() * (3 - 1 +1) +1)) AS "board_id", 
   'checkbox' AS "type",
  
-'{"question":"WHo","Answers":["1","2"]}' AS "data",
+'{"question":"WHo","Answers":{"Ansewr1":"Andrea","Answer2":"Krist","Answer3":"Eredo"}}' AS "data",
  
  
   now() - '30d'::INTERVAL * random() AS "created_at"

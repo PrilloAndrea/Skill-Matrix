@@ -1,12 +1,10 @@
 import { useQuery, gql } from "../../services/hasura-client";
 
-
-
 const QUESTION_ACTION_QUERY = gql`
 
-query QuestionAction {
+query {
 
-  questions {
+  questions(limit: 5) {
 
     board_id
 
@@ -14,15 +12,17 @@ query QuestionAction {
 
     data
 
-    is_deleted
-
     question_id
+
+    is_deleted
 
     type
 
   }
 
 }
+
+
 
 `;
 
@@ -40,25 +40,37 @@ const Questions = (props) => {
 
 
 
-
     return (
 
+      <div>
+
+          {data?.questions.map((item) =>
+
+                <div key= {item?.question_id}>
+
+                  <p>{item?.data?.question}</p>
+
+                  <p>{item?.data?.Answers?.Ansewr1}</p>
+
+                  <p>{item?.data?.Answers?.Answer2}</p>
+
+                  <p>{item?.data?.Answers?.Answer3}</p>
+
+                 
+
+                </div>
+
+                 
+
+           ) }
 
 
-        <div>
+      </div>
 
 
 
-           Test
-
-
-
-        </div>
-
-
-
-    )
-
+  )
+   
 
 
 }
