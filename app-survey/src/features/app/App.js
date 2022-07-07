@@ -17,8 +17,10 @@ const PING_ACTION_QUERY = gql`
 `;
 
 export const App = () => {
-  const { isSuccess, data } = useQuery("PingAction", PING_ACTION_QUERY);
+ // ReactQuery getPing
+ const { isSuccess, data } = useQuery("PingAction", PING_ACTION_QUERY);
 
+ console.log(data)
   return (
     <div>
 
