@@ -1,1 +1,7 @@
-[]
+- "!include public_answers.yaml"
+- "!include public_boards.yaml"
+- "!include public_boards_admins.yaml"
+- "!include public_invites.yaml"
+- "!include public_questions.yaml"
+- "!include public_survey.yaml"
+- "!include public_users.yaml"

@@ -1,0 +1,39 @@
+table:
+  name: boards
+  schema: public
+array_relationships:
+  - name: answers
+    using:
+      foreign_key_constraint_on:
+        column: board_id
+        table:
+          name: answers
+          schema: public
+  - name: boards_admins
+    using:
+      foreign_key_constraint_on:
+        column: board_id
+        table:
+          name: boards_admins
+          schema: public
+  - name: invites
+    using:
+      foreign_key_constraint_on:
+        column: board_id
+        table:
+          name: invites
+          schema: public
+  - name: questions
+    using:
+      foreign_key_constraint_on:
+        column: board_id
+        table:
+          name: questions
+          schema: public
+  - name: surveys
+    using:
+      foreign_key_constraint_on:
+        column: board_id
+        table:
+          name: survey
+          schema: public
