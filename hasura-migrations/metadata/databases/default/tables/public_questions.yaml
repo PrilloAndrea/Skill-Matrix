@@ -5,14 +5,25 @@ object_relationships:
   - name: board
     using:
       foreign_key_constraint_on: board_id
+array_relationships:
+  - name: answers
+    using:
+      manual_configuration:
+        column_mapping:
+          etag: question_etag
+          id: question_id
+        insertion_order: null
+        remote_table:
+          name: answers
+          schema: public
 select_permissions:
   - role: form
     permission:
       columns:
         - is_deleted
         - board_id
-        - question_id
+        - id
         - data
         - type
-        - created_at
+        - etag
       filter: {}

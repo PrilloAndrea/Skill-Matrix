@@ -1,0 +1,3 @@
+table:
+  name: surveys_questions
+  schema: public

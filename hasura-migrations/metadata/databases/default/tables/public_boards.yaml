@@ -16,13 +16,6 @@ array_relationships:
         table:
           name: boards_admins
           schema: public
-  - name: invites
-    using:
-      foreign_key_constraint_on:
-        column: board_id
-        table:
-          name: invites
-          schema: public
   - name: questions
     using:
       foreign_key_constraint_on:
@@ -35,5 +28,5 @@ array_relationships:
       foreign_key_constraint_on:
         column: board_id
         table:
-          name: survey
+          name: surveys
           schema: public

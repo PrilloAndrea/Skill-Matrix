@@ -5,6 +5,16 @@ object_relationships:
   - name: board
     using:
       foreign_key_constraint_on: board_id
+  - name: question
+    using:
+      manual_configuration:
+        column_mapping:
+          question_etag: etag
+          question_id: id
+        insertion_order: null
+        remote_table:
+          name: questions
+          schema: public
   - name: survey
     using:
       foreign_key_constraint_on: survey_id

@@ -1,25 +1,22 @@
 table:
-  name: users
+  name: surveys
   schema: public
+object_relationships:
+  - name: board
+    using:
+      foreign_key_constraint_on: board_id
 array_relationships:
   - name: answers
     using:
       foreign_key_constraint_on:
-        column: user_id
+        column: survey_id
         table:
           name: answers
-          schema: public
-  - name: boards_admins
-    using:
-      foreign_key_constraint_on:
-        column: user_id
-        table:
-          name: boards_admins
           schema: public
   - name: invites
     using:
       foreign_key_constraint_on:
-        column: user_id
+        column: survey_id
         table:
           name: invites
           schema: public
