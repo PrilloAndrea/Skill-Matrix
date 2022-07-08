@@ -2,7 +2,11 @@ BEGIN;
 SELECT plan(3);
 
 -- Seed required data:
+
+
 INSERT INTO "public"."boards" VALUES (1, 'foobar');
+
+
 
 
 -- Add some questions:

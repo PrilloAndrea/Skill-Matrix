@@ -1,0 +1,1 @@
+DROP TRIGGER "set_public_surveys_updated_at" ON surveys;

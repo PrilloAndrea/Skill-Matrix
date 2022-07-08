@@ -1,0 +1,1 @@
+DROP VIEW IF EXISTS surveys_questions CASCADE;

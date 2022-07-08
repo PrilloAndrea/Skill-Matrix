@@ -1,16 +1,18 @@
 CREATE TABLE IF NOT EXISTS answers(
-answer_id BIGSERIAL NOT NULL,
+id BIGSERIAL NOT NULL,
 board_id INT NOT NULL,
 survey_id INT NOT NULL,
 user_id INT NOT NULL,
 question_id INT NOT NULL,
-created_at TIMESTAMPTZ DEFAULT NOW(),
-updated_at TIMESTAMPTZ DEFAULT NOW(),
+question_etag TIMESTAMPTZ NOT NULL ,
+created_at TIMESTAMPTZ NOT NULL DEFAULT clock_timestamp(),
+updated_at TIMESTAMPTZ NOT NULL DEFAULT clock_timestamp(),
 score SMALLINT NOT NULL,
 data JSON NOT NULL DEFAULT'{}',
 notes TEXT,
-CONSTRAINT "answer_pkey" PRIMARY KEY (answer_id),
-CONSTRAINT "answers_board_id_fkey" FOREIGN KEY(user_id) REFERENCES users(user_id),
-CONSTRAINT "answers_user_id_fkey" FOREIGN KEY("board_id") REFERENCES "boards"("board_id"),
-CONSTRAINT "answer_survey_id_fkey" FOREIGN KEY("survey_id") REFERENCES "survey"("survey_id")
+CONSTRAINT "answer_pkey" PRIMARY KEY ("id"),
+CONSTRAINT "answers_user_id_fkey" FOREIGN KEY("user_id") REFERENCES "users"("id"),
+CONSTRAINT "answers_board_id_fkey" FOREIGN KEY("board_id") REFERENCES "boards"("id"),
+CONSTRAINT "answers_survey_id_fkey" FOREIGN KEY("survey_id") REFERENCES "surveys"("id"),
+CONSTRAINT "answers_question_fkey" FOREIGN KEY ("question_id", "question_etag") REFERENCES "questions"("id", "etag")
 );
