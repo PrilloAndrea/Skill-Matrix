@@ -16,9 +16,39 @@ const PING_ACTION_QUERY = gql`
   }
 `;
 
+const QUESTION_ACTION_QUERY = gql`
+
+query {
+
+  questions {
+
+    board_id
+
+    data
+
+    id
+
+    is_deleted
+
+    type
+
+  }
+
+}
+
+`;
+
+
 export const App = () => {
  // ReactQuery getPing
  const { isSuccess, data } = useQuery("PingAction", PING_ACTION_QUERY);
+ console.log(data);
+
+
+ // ReactQuery getQuestions
+ const questions = useQuery("QuestionAction", QUESTION_ACTION_QUERY);
+ console.log(questions.data);
+
 
  console.log(data)
   return (
@@ -44,7 +74,7 @@ export const App = () => {
 
         <Route element={
 
-                      <Questions />} path="/questions" />
+                      <Questions questions = {questions} />} path="/questions" />
 
          
 
