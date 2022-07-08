@@ -85,5 +85,16 @@ Day 4
 ##############################################################################################################################################################33
 
  
+Day 5
+	
+•	I tried to make a better UI for our fetched data from questions table. It was a success, because I manage to show the questions one by one on button click and to go back to the previous question.
 
-  
+•	One think that help me a lot was that I found a solution for one error that a faced on day4 that I couldn’t use 2 ReactQuery on one component. This helped me by managing the query for fetching questions on App.js and giving to Question.js as a props.
+
+
+•	Another error I faced was for the next button because when I went to the end of array it breaks my web. This problem I solved by the help of Eraldo who had delated with it before.
+
+•	I also worked with my college Kristi on changing the database because we had some issues.
+
+
+•	We faced many errors on creating the seed. The most annoying error was that seed didn’t created because we had put text as “” and not ‘’, we also had syntax with json.
