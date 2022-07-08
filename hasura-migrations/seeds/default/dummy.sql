@@ -83,7 +83,7 @@ DO UPDATE SET
 
  INSERT INTO "public"."questions" ("etag","board_id","type","data")
 
- VALUES (clock_timestamp() , 1 , "type1" , { "Question": "How are you?", "Answers" : { "Answer1" : "I'm good", "Answer2" : "Not good", "Answer3" : "Bad", "Answer4" : "Really bad"}} ),
- (clock_timestamp() , 1 , "type2" , { "Question" : "Whats day is today?", "Answers" : { "Answer1" : "Monday", "Answer2":"Tuesday", "Answer3": "Saturday","Answer4":"Sunday"}} ),
- (clock_timestamp() , 1 , "type3" , { "Question" : "Who is your hero?", "Answers" : { "Answer1":"Spiderman", "Answer2":"Superman", "Answer3": "Hulk","Answer4":"CaptainAmerica"}} ),
- (clock_timestamp() , 1 , "type4" , { "Question" : "If you could live anywhere, where would it be?", "Answers": { "Answer1": "America", "Answer2": "Germany", "Answer3": "Australia","Answer4": "China"}} ),
+ VALUES (clock_timestamp() , 1 , 'type1' , '{ "Question": "How are you?", "Answers" : { "Answer1" : "Im good", "Answer2" : "Not good", "Answer3" : "Bad", "Answer4" : "Really bad"}}' ),
+ (clock_timestamp() , 1 , 'type2' , '{ "Question" : "Whats day is today?", "Answers" : { "Answer1" : "Monday", "Answer2":"Tuesday", "Answer3": "Saturday","Answer4":"Sunday"}}' ),
+ (clock_timestamp() , 1 , 'type3' , '{ "Question" : "Who is your hero?", "Answers" : { "Answer1":"Spiderman", "Answer2":"Superman", "Answer3": "Hulk","Answer4":"CaptainAmerica"}}' ),
+ (clock_timestamp() , 1 , 'type4' , '{ "Question" : "If you could live anywhere, where would it be?", "Answers": { "Answer1": "America", "Answer2": "Germany", "Answer3": "Australia","Answer4": "China"}}' );
