@@ -8,7 +8,7 @@ export const PageTitle = ({ actions, children }) => (
       display: "flex",
       borderBottom: "2px solid black",
       borderColor: "primary.light",
-      p: 2
+      p: 2,
     }}
   >
     {children && (
@@ -34,7 +34,8 @@ export const Page = ({ title, actions, withPadding, children, ...props }) => (
     {...props}
     sx={{
       width: "95vw",
-      minHeight: "100%"
+      minHeight: "100%",
+    
     }}
   >
     {(title || actions) && <PageTitle actions={actions}>{title}</PageTitle>}

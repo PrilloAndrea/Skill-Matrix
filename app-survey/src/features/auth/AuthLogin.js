@@ -24,7 +24,10 @@ export const AuthLogin = () => {
       }}
       sx={{
         p: 5,
-        minWidth: 500
+        minWidth: 600,
+        minHeight: 300,
+        backgroundColor: "rgba(196, 253, 241, 1)",
+        mt: 20
       }}
     >
       <Box sx={{ mb: 2 }}>
@@ -40,7 +43,7 @@ export const AuthLogin = () => {
         />
       </Box>
       <Box sx={{ mb: 2 }}>
-        <Button type="submit" variant="contained" fullWidth>
+        <Button type="submit" variant="contained" fullWidth color="primary">
           Login
         </Button>
       </Box>

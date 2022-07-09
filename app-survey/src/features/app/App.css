@@ -1,0 +1,12 @@
+
+
+.flex-btn{
+    display: flex;
+    justify-content: space-between;
+    padding: 3px;
+}
+
+.img-fluid{
+    width: 100px;
+    height: 100px;
+}
