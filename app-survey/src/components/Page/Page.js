@@ -42,12 +42,10 @@ export const Page = ({ title, actions, withPadding, children, ...props }) => (
 
 
     <Box
-      sx={{
-        pl: withPadding ? 67: 0,
-        pr: withPadding ? 2 : 0,
-        pt: withPadding ? 20 : 0,
-        pb: withPadding ? 35 : 0
-      }}
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="80vh"
     >
       {children}
     </Box>
