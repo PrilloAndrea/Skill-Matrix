@@ -96,8 +96,8 @@ const Questions = (props) => {
                                           />
                                           <FormControlLabel
                                             value={props?.questions?.data?.questions?.[index].data?.Answers?.Answer2}
-                                            control={<Radio />}
-                                            label={props?.questions?.data?.questions?.[index].data?.Answers?.Answer2}
+                                               control={<Radio />}
+                                         label={props?.questions?.data?.questions?.[index].data?.Answers?.Answer2}
                                           />
                                           <FormControlLabel
                                             value={props?.questions?.data?.questions?.[index].data?.Answers?.Answer3}

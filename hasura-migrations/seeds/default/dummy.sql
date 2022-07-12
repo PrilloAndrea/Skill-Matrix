@@ -83,7 +83,7 @@ DO UPDATE SET
 
  INSERT INTO "public"."questions" ("etag","board_id","type","data")
 
- VALUES (clock_timestamp() , 1 , 'type1' , '{ "Question": "How are you?", "Answers" : { "Answer1" : "Im good", "Answer2" : "Not good", "Answer3" : "Bad", "Answer4" : "Really bad"}}' ),
- (clock_timestamp() , 1 , 'type2' , '{ "Question" : "Whats day is today?", "Answers" : { "Answer1" : "Monday", "Answer2":"Tuesday", "Answer3": "Saturday","Answer4":"Sunday"}}' ),
- (clock_timestamp() , 1 , 'type3' , '{ "Question" : "Who is your hero?", "Answers" : { "Answer1":"Spiderman", "Answer2":"Superman", "Answer3": "Hulk","Answer4":"CaptainAmerica"}}' ),
- (clock_timestamp() , 1 , 'type4' , '{ "Question" : "If you could live anywhere, where would it be?", "Answers": { "Answer1": "America", "Answer2": "Germany", "Answer3": "Australia","Answer4": "China"}}' );
+ VALUES (clock_timestamp() , 1 , 'type1' , '{ "Question": "How are you?"}' ),
+ (clock_timestamp() , 1 , 'type2' , '{ "Question" : "Whats day is today?", "Answers" : { "Answer1" : {"Answer":"Monday","Score":25},"Answer2" : {"Answer":"Tuesday","Score":50},"Answer3":{"Answer":"Saturday","Score":75},"Answer4":{"Answer":"Wenesday","Score":100}}}' ),
+ (clock_timestamp() , 1 , 'type3' , '{ "Question" : "Who is your hero?", "Answers" : { "Answer1":{"Answer":"True","Score":100},"Answer2":{"Answer":"False","Score":0}}}' ),
+ (clock_timestamp() , 1 , 'type4' , '{ "Question" : "If you could live anywhere, where would it be?", "Answers": { "Answer1" : {"Answer":"America","Score":25}, "Answer2" : {"Answer":"Germany","Score":50}, "Answer3" : {"Answer":"Australia","Score":75},"Answer4" : {"Answer":"Canada","Score":100}}}' );
