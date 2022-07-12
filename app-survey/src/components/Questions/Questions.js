@@ -16,6 +16,8 @@ import { useState } from "react";
 import Page from "../Page";
 import { Logout } from "../../features/app/Logout";
 
+
+
 const Questions = (props) => {
   // ReactQuery getQuestions by props
   console.log(props?.questions?.data?.questions);
@@ -51,6 +53,7 @@ const Questions = (props) => {
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
+
 
   return (
     <>
