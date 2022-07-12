@@ -87,14 +87,40 @@ Day 4
  
 Day 5
 	
-•	I tried to make a better UI for our fetched data from questions table. It was a success, because I manage to show the questions one by one on button click and to go back to the previous question.
+• I tried to make a better UI for our fetched data from questions table. It was a success, because I manage to show the questions one by one on button click and to go back to the previous question.
 
-•	One think that help me a lot was that I found a solution for one error that a faced on day4 that I couldn’t use 2 ReactQuery on one component. This helped me by managing the query for fetching questions on App.js and giving to Question.js as a props.
-
-
-•	Another error I faced was for the next button because when I went to the end of array it breaks my web. This problem I solved by the help of Eraldo who had delated with it before.
-
-•	I also worked with my college Kristi on changing the database because we had some issues.
+• One think that help me a lot was that I found a solution for one error that a faced on day4 that I couldn’t use 2 ReactQuery on one component. This helped me by managing the query for fetching questions on App.js and giving to Question.js as a props.
 
 
-•	We faced many errors on creating the seed. The most annoying error was that seed didn’t created because we had put text as “” and not ‘’, we also had syntax with json.
+• Another error I faced was for the next button because when I went to the end of array it breaks my web. This problem I solved by the help of Eraldo who had delated with it before.
+
+• I also worked with my college Kristi on changing the database because we had some issues.
+
+
+• We faced many errors on creating the seed. The most annoying error was that seed didn’t created because we had put text as “” and not ‘’, we also had syntax with json.
+
+###################################################################################################################################################################
+
+Day 6
+
+• I worked on weekend and changed the frontend for the survey page. 
+
+• The only error I faced was with the Material UI after I read the documentation, everything was clean.
+
+
+###################################################################################################################################################################
+
+
+Day 7
+
+• Today I worked on creating the post method for saving the answers data on backend. It was a challenging task but me, and my teammates managed to deal with it successfully.
+
+• At the beginning we searched for a way to handle the function and I found the solution on this 2 pages: https://hasura.io/blog/getting-started-with-react-query-and-graphql/ , https://dev.to/alexmercedcoder/creating-a-graphql-based-habit-tracker-with-hasura-and-react-graphqlhasura-101-37m5 .
+
+
+• After we created the mutation of the post query. We faced an error on the mutation on the foreign_key and for this we had to do some changes on our tables and then the mutation worked fine.
+
+• Another error we faced was “Network error” because we had the endpoint of hasura wrong. It took some times for us to find out the right one. First I tried the endpoint I found in docker-compose.yml file but it didn’t work, then I tried the one that is showed at hasura localhost and everything worked fine. To be sure why the endpoint from docker-compose.yml file didn’t work I tried to  run the project on my VScode not on gitpod and it worked fine. 
+•	Now we have to find a way to set the variables of the createAnswer query to be set by the program and not by us giving it some values. 
+
+
