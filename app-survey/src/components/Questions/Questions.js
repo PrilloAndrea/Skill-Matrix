@@ -18,7 +18,7 @@ import Page from "../Page";
 import { Logout } from "../../features/app/Logout";
 import axios from 'axios';
 
-const BASE_URL = "https://8080-prilloandre-skillmatrix-39wv4oki680.ws-eu53.gitpod.io/v1beta1/relay";
+const BASE_URL = "https://8080-prilloandre-skillmatrix-86h2ijx4f5m.ws-eu53.gitpod.io/v1/graphql";
 const ADMIN_SECRET = "hasura";
 
 const Questions = (props) => {

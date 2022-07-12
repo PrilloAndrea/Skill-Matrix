@@ -4,7 +4,6 @@ import { Logout } from "./Logout";
 import { Routes, Route } from "react-router-dom";
 import Welcome from "../../components/Welcome/Welcome";
 import Questions from "../../components/Questions/Questions";
-import { spacing } from '@mui/system';
 import './App.css';
 
 

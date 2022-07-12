@@ -1,10 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
+import jwt from "jwt-decode";
 
 import { useAuth } from "./use-auth";
 
@@ -14,6 +15,21 @@ export const AuthLogin = () => {
     const token = localStorage.getItem("at");
     token !== null && login(token);
   }, []);
+
+  const [t,setT]=useState("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwczovL2hhc3VyYS5pby9qd3QvY2xhaW1zIjp7IngtaGFzdXJhLWFsbG93ZWQtcm9sZXMiOlsiZm9ybSJdLCJ4LWhhc3VyYS1kZWZhdWx0LXJvbGUiOiJmb3JtIiwieC1oYXN1cmEtdXNlci1pZCI6Inh4eCIsIngtaGFzdXJhLWZvcm0taWQiOiJ4eHgifX0.uPC5oicDRxiqV7o8CbQH7lI3mzFilrwW4Ofz9SWfN8o");
+  console.log(t);
+
+  const handleChange = (event ,newAValue) => {
+    setT(event.target.value);
+
+
+    
+  };
+
+  const decodeToken = jwt(t);
+
+  console.log(decodeToken);
+
 
   return (
     <Paper
@@ -40,6 +56,7 @@ export const AuthLogin = () => {
           name="token"
           placeholder="Invitation token"
           fullWidth
+          onChange={handleChange}
         />
       </Box>
       <Box sx={{ mb: 2 }}>
