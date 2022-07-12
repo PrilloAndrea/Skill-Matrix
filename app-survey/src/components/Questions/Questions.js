@@ -10,13 +10,16 @@ import {
   ToggleButtonGroup,
   ToggleButton,
   Typography,
-  Rating
+  Rating,
+  Container
 } from "@mui/material";
 import { useState } from "react";
 import Page from "../Page";
 import { Logout } from "../../features/app/Logout";
+import axios from 'axios';
 
-
+const BASE_URL = "https://8080-prilloandre-skillmatrix-39wv4oki680.ws-eu53.gitpod.io/v1beta1/relay";
+const ADMIN_SECRET = "hasura";
 
 const Questions = (props) => {
   // ReactQuery getQuestions by props
@@ -45,21 +48,65 @@ const Questions = (props) => {
   };
 
   //Rating value
-  const [value, setValue] = useState(2);
+  const [value, setValue] = useState(0);
+  console.log(value);
 
-  //ToggleBUtton value
-  const [alignment, setAlignment] = useState("web");
-
-  const handleChange = (event, newAlignment) => {
-    setAlignment(newAlignment);
+  const handleChange = (event ,newAValue) => {
+    setValue(event.target.value);
+    setValue(newAValue);
   };
 
+  
+
+  const save = () =>{
+
+    handleNext();
+    console.log("start")
+    axios({
+      url: BASE_URL,
+      method: "POST",
+      headers: {
+        "x-hasura-admin-secret": ADMIN_SECRET,
+      },
+      data: {
+        variables: {
+          question_id: 1 ,
+          board_id: 1,
+          survey_id: 1,
+          user_id: 1,
+          question_etag: "2016-07-20T17:30:15+05:30",
+          score: value,
+          data:"temp"
+        },
+        query: `
+        mutation createAnswer($question_id: Int!, $board_id: Int!, $survey_id: Int!, $user_id: Int!, $question_etag: timestamptz, $score: smallint!, $data: json) {
+  
+          insert_answers_one(object: {question_id: $question_id, board_id: $board_id, survey_id: $survey_id, question_etag: $question_etag, user_id: $user_id, score: $score, data: $data}, on_conflict: {constraint: answer_pkey, update_columns: score, where: {question_id: {_is_null: false}}}) {
+            board_id
+            data
+            question_id
+            survey_id
+            user_id
+            score
+          }
+        }
+        `,
+      },
+    })
+    .then(res => console.log(res.data))
+    .catch((err)=>{
+      console.log(err);
+    });
+
+    console.log("end")
+
+  }
 
   return (
     <>
       <Page withPadding title={"Survey App"} actions={<Logout />}>
         {props?.questions?.isSuccess ? (
-          <div>
+          <Container maxWidth="sm">
             <FormControl sx={{ width: 1 }}>
               <FormLabel>
                 <Box>
@@ -85,9 +132,7 @@ const Questions = (props) => {
                           <Rating
                             name="simple-controlled"
                             value={value}
-                            onChange={(event, newValue) => {
-                              setValue(newValue);
-                            }}
+                            onChange={handleChange}
                           />
                         </Box>
                       </div>
@@ -101,6 +146,7 @@ const Questions = (props) => {
                           row
                           aria-labelledby="demo-row-radio-buttons-group-label"
                           name="row-radio-buttons-group"
+                          onChange={handleChange}
                         >
                           <FormControlLabel
                             value={
@@ -158,6 +204,7 @@ const Questions = (props) => {
                           row
                           aria-labelledby="demo-row-radio-buttons-group-label"
                           name="row-radio-buttons-group"
+                          onChange={handleChange}
                         >
                           <FormControlLabel
                             value={
@@ -191,9 +238,9 @@ const Questions = (props) => {
                       <div>
                         <ToggleButtonGroup
                           color="primary"
-                          value={alignment}
+                          value={value}
                           exclusive
-                          onChange={handleChange}
+                          onChange={ handleChange }
                         >
                           <ToggleButton
                             value={
@@ -256,11 +303,11 @@ const Questions = (props) => {
               >
                 Prev
               </Button>
-              <Button variant="contained" onClick={handleNext}>
+              <Button variant="contained" onClick={save}>
                 Next
               </Button>
             </div>
-          </div>
+          </Container>
         ) : (
           "loading time..."
         )}
