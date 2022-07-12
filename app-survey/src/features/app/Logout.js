@@ -7,7 +7,7 @@ export const Logout = () => {
   const { logout } = useAuth();
 
   return (
-    <IconButton onClick={logout}>
+    <IconButton onClick={logout} href="/">
       <LogoutIcon />
     </IconButton>
   );

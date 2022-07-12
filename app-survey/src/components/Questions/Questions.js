@@ -70,7 +70,7 @@ const Questions = (props) => {
       },
       data: {
         variables: {
-          question_id: 1 ,
+          question_id: index + 1,
           board_id: 1,
           survey_id: 1,
           user_id: 1,
@@ -99,6 +99,7 @@ const Questions = (props) => {
     });
 
     console.log("end")
+    setValue(0)
 
   }
 
