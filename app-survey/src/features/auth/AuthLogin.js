@@ -21,14 +21,18 @@ export const AuthLogin = () => {
 
   const handleChange = (event ,newAValue) => {
     setT(event.target.value);
-
-
-    
   };
 
-  const decodeToken = jwt(t);
-
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      console.log('This will run after 1 second!')
+      const decodeToken = jwt(t);
   console.log(decodeToken);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [t]);
+
+  
 
 
   return (
