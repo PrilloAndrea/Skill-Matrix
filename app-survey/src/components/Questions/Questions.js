@@ -21,7 +21,7 @@ import axios from 'axios';
 import { useQuery, gql } from "../../services/hasura-client";
 
 
-const BASE_URL = "https://8080-prilloandre-skillmatrix-mqz9a250up0.ws-eu53.gitpod.io/v1/graphql";
+const BASE_URL = "https://8080-prilloandre-skillmatrix-9agzc4s1eqm.ws-eu53.gitpod.io/v1/graphql";
 const ADMIN_SECRET = "hasura";
 
 const Questions = (props) => {
