@@ -17,23 +17,57 @@ import { useState } from "react";
 import Page from "../Page";
 import { Logout } from "../../features/app/Logout";
 import axios from 'axios';
+import { useQuery, gql } from "../../services/hasura-client";
 
-const BASE_URL = "https://8080-prilloandre-skillmatrix-4tgr2at8u12.ws-eu53.gitpod.io/v1/graphql";
+
+const BASE_URL = "https://8080-prilloandre-skillmatrix-mqz9a250up0.ws-eu53.gitpod.io/v1/graphql";
 const ADMIN_SECRET = "hasura";
 
 const Questions = (props) => {
+
+  // Get Questions query
+const QUESTION_ACTION_QUERY = gql`
+query getQuestions($id: Int!) {
+  questions(where: {survey_id: {_eq: $id}}) {
+    data
+    etag
+    id
+    is_deleted
+    type
+    survey_id
+    survey {
+      board_id
+    }
+  }
+}
+
+`;
+
+console.log(props)
+
+const questions = useQuery("QuestionAction", QUESTION_ACTION_QUERY,
+ {
+  variables: {
+    id: parseInt(props?.decodeToken['https://hasura.io/jwt/claims']['x-hasura-survey-id'])
+  }
+ });
+ console.log(questions?.data);
+
+
+
+
   // ReactQuery getQuestions by props
-  console.log(props?.questions?.data?.questions);
+  console.log(questions?.data?.questions);
 
   // Index controlling questions one by one
   const [index, setIndex] = useState(0);
-  console.log(props?.questions?.data?.questions[index]);
+  console.log(questions?.data?.questions[index]);
 
   //Function go to next question
   const handleNext = () => {
-    if (index < props?.questions?.data?.questions?.length - 1) {
+    if (index < questions?.data?.questions?.length - 1) {
       setIndex(index + 1);
-      console.log(props?.questions?.data?.questions[index]);
+      console.log(questions?.data?.questions[index]);
     } else {
       setIndex(index);
     }
@@ -43,7 +77,7 @@ const Questions = (props) => {
   const handlePrevious = () => {
     if (index >= 0) {
       setIndex(index - 1);
-      console.log(props?.questions?.data?.questions[index]);
+      console.log(questions?.data?.questions[index]);
     }
   };
 
@@ -71,9 +105,9 @@ const Questions = (props) => {
       data: {
         variables: {
           question_id: index + 1,
-          board_id: 1,
-          survey_id: 1,
-          user_id: 1,
+          board_id: questions?.data?.questions?.[index].survey.board_id,
+          survey_id: questions?.data?.questions?.[index].survey_id,
+          user_id: parseInt(props?.decodeToken['https://hasura.io/jwt/claims']['x-hasura-user-id']),
           question_etag: "2016-07-20T17:30:15+05:30",
           score: value,
           data:"temp"
@@ -106,13 +140,13 @@ const Questions = (props) => {
   return (
     <>
       <Page withPadding title={"Survey App"} actions={<Logout />}>
-        {props?.questions?.isSuccess ? (
+        {questions?.isSuccess ? (
           <Container maxWidth="sm">
             <FormControl sx={{ width: 1 }}>
               <FormLabel>
                 <Box>
                   <h1 style={{ color: "blue", textAlign: "center" }}>
-                    {props?.questions?.data?.questions?.[index].data?.Question}
+                    {questions?.data?.questions?.[index].data?.Question}
                   </h1>
                 </Box>
               </FormLabel>
@@ -120,7 +154,7 @@ const Questions = (props) => {
               <div>
                 {(() => {
                   if (
-                    props?.questions?.data?.questions?.[index].type === "type1"
+                    questions?.data?.questions?.[index].type === "type1"
                   ) {
                     return (
                       <div>
@@ -139,7 +173,7 @@ const Questions = (props) => {
                       </div>
                     );
                   } else if (
-                    props?.questions?.data?.questions?.[index].type === "type2"
+                    questions?.data?.questions?.[index].type === "type2"
                   ) {
                     return (
                       <div>
@@ -151,45 +185,45 @@ const Questions = (props) => {
                         >
                           <FormControlLabel
                             value={
-                              props?.questions?.data?.questions?.[index].data
+                              questions?.data?.questions?.[index].data
                                 ?.Answers?.Answer1?.Score
                             }
                             control={<Radio />}
                             label={
-                              props?.questions?.data?.questions?.[index].data
+                              questions?.data?.questions?.[index].data
                                 ?.Answers?.Answer1?.Answer
                             }
                           />
                           <FormControlLabel
                             value={
-                              props?.questions?.data?.questions?.[index].data
+                              questions?.data?.questions?.[index].data
                                 ?.Answers?.Answer2?.Score
                             }
                             control={<Radio />}
                             label={
-                              props?.questions?.data?.questions?.[index].data
+                              questions?.data?.questions?.[index].data
                                 ?.Answers?.Answer2?.Answer
                             }
                           />
                           <FormControlLabel
                             value={
-                              props?.questions?.data?.questions?.[index].data
+                              questions?.data?.questions?.[index].data
                                 ?.Answers?.Answer3?.Score
                             }
                             control={<Radio />}
                             label={
-                              props?.questions?.data?.questions?.[index].data
+                              questions?.data?.questions?.[index].data
                                 ?.Answers?.Answer3?.Answer
                             }
                           />
                           <FormControlLabel
                             value={
-                              props?.questions?.data?.questions?.[index].data
+                              questions?.data?.questions?.[index].data
                                 ?.Answers?.Answer4?.Score
                             }
                             control={<Radio />}
                             label={
-                              props?.questions?.data?.questions?.[index].data
+                              questions?.data?.questions?.[index].data
                                 ?.Answers?.Answer4?.Answer
                             }
                           />
@@ -197,7 +231,7 @@ const Questions = (props) => {
                       </div>
                     );
                   } else if (
-                    props?.questions?.data?.questions?.[index].type === "type3"
+                    questions?.data?.questions?.[index].type === "type3"
                   ) {
                     return (
                       <div>
@@ -209,23 +243,23 @@ const Questions = (props) => {
                         >
                           <FormControlLabel
                             value={
-                              props?.questions?.data?.questions?.[index].data
+                              questions?.data?.questions?.[index].data
                                 ?.Answers?.Answer1?.Score
                             }
                             control={<Radio />}
                             label={
-                              props?.questions?.data?.questions?.[index].data
+                              questions?.data?.questions?.[index].data
                                 ?.Answers?.Answer1?.Answer
                             }
                           />
                           <FormControlLabel
                             value={
-                              props?.questions?.data?.questions?.[index].data
+                              questions?.data?.questions?.[index].data
                                 ?.Answers?.Answer2?.Score
                             }
                             control={<Radio />}
                             label={
-                              props?.questions?.data?.questions?.[index].data
+                              questions?.data?.questions?.[index].data
                                 ?.Answers?.Answer2?.Answer
                             }
                           />
@@ -233,7 +267,7 @@ const Questions = (props) => {
                       </div>
                     );
                   } else if (
-                    props?.questions?.data?.questions?.[index].type === "type4"
+                    questions?.data?.questions?.[index].type === "type4"
                   ) {
                     return (
                       <div>
@@ -245,46 +279,46 @@ const Questions = (props) => {
                         >
                           <ToggleButton
                             value={
-                              props?.questions?.data?.questions?.[index].data
+                              questions?.data?.questions?.[index].data
                                 ?.Answers?.Answer1?.Score
                             }
                           >
                             {
-                              props?.questions?.data?.questions?.[index].data
+                              questions?.data?.questions?.[index].data
                                 ?.Answers?.Answer1?.Answer
                             }
                           </ToggleButton>
 
                           <ToggleButton
                             value={
-                              props?.questions?.data?.questions?.[index].data
+                              questions?.data?.questions?.[index].data
                                 ?.Answers?.Answer2?.Score
                             }
                           >
                             {
-                              props?.questions?.data?.questions?.[index].data
+                              questions?.data?.questions?.[index].data
                                 ?.Answers?.Answer2?.Answer
                             }
                           </ToggleButton>
                           <ToggleButton
                             value={
-                              props?.questions?.data?.questions?.[index].data
+                              questions?.data?.questions?.[index].data
                                 ?.Answers?.Answer3?.Score
                             }
                           >
                             {
-                              props?.questions?.data?.questions?.[index].data
+                              questions?.data?.questions?.[index].data
                                 ?.Answers?.Answer3?.Answer
                             }
                           </ToggleButton>
                           <ToggleButton
                             value={
-                              props?.questions?.data?.questions?.[index].data
+                              questions?.data?.questions?.[index].data
                                 ?.Answers?.Answer4?.Score
                             }
                           >
                             {
-                              props?.questions?.data?.questions?.[index].data
+                              questions?.data?.questions?.[index].data
                                 ?.Answers?.Answer4?.Answer
                             }
                           </ToggleButton>

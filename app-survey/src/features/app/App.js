@@ -4,6 +4,8 @@ import { Logout } from "./Logout";
 import { Routes, Route } from "react-router-dom";
 import Welcome from "../../components/Welcome/Welcome";
 import Questions from "../../components/Questions/Questions";
+import { useEffect, useState } from "react";
+import jwt from "jwt-decode";
 import './App.css';
 
 // Ping query
@@ -15,59 +17,44 @@ const PING_ACTION_QUERY = gql`
   }
 `;
 
-// Get Questions query
-const QUESTION_ACTION_QUERY = gql`
-query getQuestions($id: Int!) {
-  questions(where: {survey_id: {_eq: $id}}) {
-    data
-    etag
-    id
-    is_deleted
-    type
-  }
-}
-`;
 
-// Get Survey query
-const SURVEY_ACTION_QUERY = gql`
-query GetSurvey($id : Int!) {
-  surveys(where: {id: {_eq: $id}}) {
-    opens_at
-    closes_at
-  }
-}
 
-`;
+
 
 
 export const App = () => {
+
+
+ 
 
  // ReactQuery getPing
  const { isSuccess, data } = useQuery("PingAction", PING_ACTION_QUERY);
  console.log(data);
 
+ const token = localStorage.getItem("at");
+
+ const [decodeToken ,setDecodeToken] = useState(jwt(token))
+ // Get Token from localStorage
+//  useEffect(() => {
+
+    //  const codedToken=jwt(token);
+    //  setDecodeToken(codedToken);
+    //  console.log(parseInt(decodeToken['https://hasura.io/jwt/claims']['x-hasura-survey-id']))
+//  }, []);
+
+// useEffect(()=> {
+//   console.log(decodeToken);
+// }, [decodeToken]) 
+
+//  console.log(decodeToken['https://hasura.io/jwt/claims']['x-hasura-survey-id'])
 
  // ReactQuery getQuestions
- const questions = useQuery("QuestionAction", QUESTION_ACTION_QUERY,
- {
-  variables: {
-    id: 1
-  }
- });
- console.log(questions.data);
-
-// ReactQuery getQuestions
-const survey = useQuery("SurveyAction", SURVEY_ACTION_QUERY,
-{
- variables: {
-   id: 1
- }
-});
-console.log(survey.isSuccess)
-console.log(survey.data)
+ 
 
 
 
+
+// parseInt(decodeToken['https://hasura.io/jwt/claims']['x-hasura-survey-id'])
   return (
     <div>
 
@@ -81,7 +68,7 @@ console.log(survey.data)
 
                                 {isSuccess
 
-                                    ? <Welcome sx={{ mb: 50 }} survey={survey} />
+                                    ? <Welcome sx={{ mb: 50 }}  decodeToken={decodeToken}/>
 
                                     : "loading time..."}
 
@@ -91,7 +78,7 @@ console.log(survey.data)
 
         <Route element={
 
-                      <Questions questions = {questions} />} path="/questions" />
+                      <Questions decodeToken={decodeToken} />} path="/questions" />
 
          
 
