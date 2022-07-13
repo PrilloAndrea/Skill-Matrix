@@ -21,35 +21,17 @@ import axios from 'axios';
 import { useQuery, gql } from "../../services/hasura-client";
 import Loading from "../Loading/Loading";
 import { useNavigate } from "react-router-dom";
-
-
+import * as query from '../Querys'
 
 const BASE_URL = "https://8080-prilloandre-skillmatrix-okqhuy4swbm.ws-eu53.gitpod.io/v1/graphql";
 const ADMIN_SECRET = "hasura";
 
 const Questions = (props) => {
 
-  // Get Questions query
-const QUESTION_ACTION_QUERY = gql`
-query getQuestions($id: Int!) {
-  questions(where: {survey_id: {_eq: $id}}) {
-    data
-    etag
-    id
-    is_deleted
-    type
-    survey_id
-    survey {
-      board_id
-    }
-  }
-}
 
-`;
-
+// Get Questions query
 console.log(props)
-
-const questions = useQuery("QuestionAction", QUESTION_ACTION_QUERY,
+const questions = useQuery("QuestionAction", query.QUESTION_ACTION_QUERY,
  {
   variables: {
     id: parseInt(props?.decodeToken['https://hasura.io/jwt/claims']['x-hasura-survey-id'])
@@ -66,9 +48,6 @@ const questions = useQuery("QuestionAction", QUESTION_ACTION_QUERY,
   // Index controlling questions one by one
   const [index, setIndex] = useState(0);
   console.log(questions?.data?.questions[index]);
-
-
-
   const maxLength = questions?.data?.questions?.length - 1;
 
   const navigate = useNavigate();
@@ -94,7 +73,7 @@ const questions = useQuery("QuestionAction", QUESTION_ACTION_QUERY,
     }
   };
 
-  //Rating value
+  //Score value
   const [value, setValue] = useState(0);
   console.log(value);
 
@@ -103,8 +82,7 @@ const questions = useQuery("QuestionAction", QUESTION_ACTION_QUERY,
     setValue(newAValue);
   };
 
-  
-
+// Save answer function
   const save = () =>{
 
     handleNext();
@@ -125,19 +103,7 @@ const questions = useQuery("QuestionAction", QUESTION_ACTION_QUERY,
           score: value,
           data:"temp"
         },
-        query: `
-        mutation createAnswer($question_id: Int!, $board_id: Int!, $survey_id: Int!, $user_id: Int!, $question_etag: timestamptz, $score: smallint!, $data: json) {
-  
-          insert_answers_one(object: {question_id: $question_id, board_id: $board_id, survey_id: $survey_id, question_etag: $question_etag, user_id: $user_id, score: $score, data: $data}, on_conflict: {constraint: answer_pkey, update_columns: score, where: {question_id: {_is_null: false}}}) {
-            board_id
-            data
-            question_id
-            survey_id
-            user_id
-            score
-          }
-        }
-        `,
+        query: query.ANSWER_ACTION_QUERY,
       },
     })
     .then(res => console.log(res.data))

@@ -9,26 +9,21 @@ import jwt from "jwt-decode";
 import './App.css';
 import Loading from "../../components/Loading/Loading";
 import Results from "../../components/Results/Results";
+import * as query from '../../components/Querys'
 
-// Ping query
-const PING_ACTION_QUERY = gql`
-  query {
-    ping: ping_action {
-      timestamp
-    }
-  }
-`;
+
 
 export const App = () => {
 
 
 
  // ReactQuery getPing
- const { isSuccess, data } = useQuery("PingAction", PING_ACTION_QUERY);
+ const { isSuccess, data } = useQuery("PingAction", query.PING_ACTION_QUERY);
  console.log(data);
 
- const token = localStorage.getItem("at");
 
+ //Decode Token
+ const token = localStorage.getItem("at");
  const [decodeToken ,setDecodeToken] = useState(jwt(token))
 
  // Get Token from localStorage
@@ -49,22 +44,10 @@ export const App = () => {
 
 // parseInt(decodeToken['https://hasura.io/jwt/claims']['x-hasura-survey-id'])
 
-const RESULTS_ACTION_QUERY = gql`
-query getResults($user_id: Int!) {
-  results(where: {user_id: {_eq: $user_id}}) {
-    question_id
-    survey_id
-    user_id
-    data
-    score
-    type
-  }
-}
-
-`;
 
 
-const results = useQuery("QuestionAction", RESULTS_ACTION_QUERY,
+ // ReactQuery getResults
+const results = useQuery("QuestionAction", query.RESULTS_ACTION_QUERY,
  {
   variables: {
     user_id: parseInt(decodeToken['https://hasura.io/jwt/claims']['x-hasura-user-id'])
