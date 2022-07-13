@@ -20,3 +20,21 @@ array_relationships:
         table:
           name: invites
           schema: public
+  - name: questions
+    using:
+      foreign_key_constraint_on:
+        column: survey_id
+        table:
+          name: questions
+          schema: public
+select_permissions:
+  - role: form
+    permission:
+      columns:
+        - board_id
+        - id
+        - closes_at
+        - created_at
+        - opens_at
+        - updated_at
+      filter: {}

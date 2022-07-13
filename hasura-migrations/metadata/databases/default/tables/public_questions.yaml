@@ -2,9 +2,9 @@ table:
   name: questions
   schema: public
 object_relationships:
-  - name: board
+  - name: survey
     using:
-      foreign_key_constraint_on: board_id
+      foreign_key_constraint_on: survey_id
 array_relationships:
   - name: answers
     using:
@@ -16,14 +16,21 @@ array_relationships:
         remote_table:
           name: answers
           schema: public
+  - name: answersByQuestionId
+    using:
+      foreign_key_constraint_on:
+        column: question_id
+        table:
+          name: answers
+          schema: public
 select_permissions:
   - role: form
     permission:
       columns:
-        - is_deleted
-        - board_id
         - id
-        - data
-        - type
         - etag
+        - survey_id
+        - type
+        - data
+        - is_deleted
       filter: {}

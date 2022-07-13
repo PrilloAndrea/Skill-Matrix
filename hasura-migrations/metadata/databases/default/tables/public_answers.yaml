@@ -15,6 +15,9 @@ object_relationships:
         remote_table:
           name: questions
           schema: public
+  - name: questionByQuestionId
+    using:
+      foreign_key_constraint_on: question_id
   - name: survey
     using:
       foreign_key_constraint_on: survey_id

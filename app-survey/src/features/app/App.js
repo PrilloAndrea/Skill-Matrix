@@ -17,25 +17,15 @@ const PING_ACTION_QUERY = gql`
 
 // Get Questions query
 const QUESTION_ACTION_QUERY = gql`
-
-query {
-
-  questions {
-
-    board_id
-
+query getQuestions($id: Int!) {
+  questions(where: {survey_id: {_eq: $id}}) {
     data
-
+    etag
     id
-
     is_deleted
-
     type
-
   }
-
 }
-
 `;
 
 // Get Survey query
@@ -58,7 +48,12 @@ export const App = () => {
 
 
  // ReactQuery getQuestions
- const questions = useQuery("QuestionAction", QUESTION_ACTION_QUERY);
+ const questions = useQuery("QuestionAction", QUESTION_ACTION_QUERY,
+ {
+  variables: {
+    id: 1
+  }
+ });
  console.log(questions.data);
 
 // ReactQuery getQuestions
