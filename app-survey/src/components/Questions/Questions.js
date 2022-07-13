@@ -61,6 +61,7 @@ const Questions = (props) => {
       console.log(questions?.data?.questions[index]);
     } else if (maxLength) {
       navigate("/results");
+      window.location.reload();
     } else {
       setIndex(index);
     }
