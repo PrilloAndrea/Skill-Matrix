@@ -11,7 +11,8 @@ import {
   ToggleButton,
   Typography,
   Rating,
-  Container
+  Container,
+  Grid
 } from "@mui/material";
 import { useState } from "react";
 import Page from "../Page";
@@ -62,6 +63,10 @@ const questions = useQuery("QuestionAction", QUESTION_ACTION_QUERY,
   // Index controlling questions one by one
   const [index, setIndex] = useState(0);
   console.log(questions?.data?.questions[index]);
+
+
+
+  const maxLength = questions?.data?.questions?.length - 1;
 
   //Function go to next question
   const handleNext = () => {
@@ -143,21 +148,25 @@ const questions = useQuery("QuestionAction", QUESTION_ACTION_QUERY,
         {questions?.isSuccess ? (
           <Container maxWidth="sm">
             <FormControl sx={{ width: 1 }}>
-              <FormLabel>
-                <Box>
+              <FormLabel sx={{ lineHeight: 'normal' }}>
+                <Box >
                   <h1 style={{ color: "blue", textAlign: "center" }}>
                     {questions?.data?.questions?.[index].data?.Question}
                   </h1>
                 </Box>
               </FormLabel>
 
-              <div>
+              <Grid container
+  spacing={0}
+  direction="column"
+  alignItems="center"
+  justify="center">
                 {(() => {
                   if (
                     questions?.data?.questions?.[index].type === "type1"
                   ) {
                     return (
-                      <div>
+                      <div style={{display: "flex", alignItems: "center"}}>
                         <Box
                           sx={{
                             "& > legend": { mt: 2 }
@@ -327,7 +336,7 @@ const questions = useQuery("QuestionAction", QUESTION_ACTION_QUERY,
                     );
                   }
                 })()}
-              </div>
+              </Grid>
             </FormControl>
 
             <div className="flex-btn" style={{ paddingTop: 45 }}>
@@ -342,6 +351,10 @@ const questions = useQuery("QuestionAction", QUESTION_ACTION_QUERY,
                 Next
               </Button>
             </div>
+            <br/>
+            <br/>
+            <hr/>
+            Your progress is {index + 1 } / {maxLength + 1}
           </Container>
         ) : (
           "loading time..."
