@@ -20,9 +20,11 @@ import { Logout } from "../../features/app/Logout";
 import axios from 'axios';
 import { useQuery, gql } from "../../services/hasura-client";
 import Loading from "../Loading/Loading";
+import { useNavigate } from "react-router-dom";
 
 
-const BASE_URL = "https://8080-prilloandre-skillmatrix-9agzc4s1eqm.ws-eu53.gitpod.io/v1/graphql";
+
+const BASE_URL = "https://8080-prilloandre-skillmatrix-okqhuy4swbm.ws-eu53.gitpod.io/v1/graphql";
 const ADMIN_SECRET = "hasura";
 
 const Questions = (props) => {
@@ -69,12 +71,17 @@ const questions = useQuery("QuestionAction", QUESTION_ACTION_QUERY,
 
   const maxLength = questions?.data?.questions?.length - 1;
 
+  const navigate = useNavigate();
+
   //Function go to next question
   const handleNext = () => {
     if (index < questions?.data?.questions?.length - 1) {
       setIndex(index + 1);
       console.log(questions?.data?.questions[index]);
-    } else {
+    } else if (maxLength) {
+      navigate("/results");
+    }
+    else {
       setIndex(index);
     }
   };
@@ -178,6 +185,7 @@ const questions = useQuery("QuestionAction", QUESTION_ACTION_QUERY,
                             name="simple-controlled"
                             value={value}
                             onChange={handleChange}
+                            defaultValue={0} 
                           />
                         </Box>
                       </div>
