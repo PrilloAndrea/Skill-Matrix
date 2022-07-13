@@ -6,8 +6,7 @@ import Welcome from "../../components/Welcome/Welcome";
 import Questions from "../../components/Questions/Questions";
 import './App.css';
 
-
-
+// Ping query
 const PING_ACTION_QUERY = gql`
   query {
     ping: ping_action {
@@ -16,6 +15,7 @@ const PING_ACTION_QUERY = gql`
   }
 `;
 
+// Get Questions query
 const QUESTION_ACTION_QUERY = gql`
 
 query {
@@ -38,8 +38,20 @@ query {
 
 `;
 
+// Get Survey query
+const SURVEY_ACTION_QUERY = gql`
+query GetSurvey($id : Int!) {
+  surveys(where: {id: {_eq: $id}}) {
+    opens_at
+    closes_at
+  }
+}
+
+`;
+
 
 export const App = () => {
+
  // ReactQuery getPing
  const { isSuccess, data } = useQuery("PingAction", PING_ACTION_QUERY);
  console.log(data);
@@ -49,8 +61,18 @@ export const App = () => {
  const questions = useQuery("QuestionAction", QUESTION_ACTION_QUERY);
  console.log(questions.data);
 
+// ReactQuery getQuestions
+const survey = useQuery("SurveyAction", SURVEY_ACTION_QUERY,
+{
+ variables: {
+   id: 1
+ }
+});
+console.log(survey.isSuccess)
+console.log(survey.data)
 
- console.log(data)
+
+
   return (
     <div>
 
@@ -64,7 +86,7 @@ export const App = () => {
 
                                 {isSuccess
 
-                                    ? <Welcome sx={{ mb: 50 }}  />
+                                    ? <Welcome sx={{ mb: 50 }} survey={survey} />
 
                                     : "loading time..."}
 
