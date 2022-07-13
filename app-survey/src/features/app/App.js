@@ -7,6 +7,7 @@ import Questions from "../../components/Questions/Questions";
 import { useEffect, useState } from "react";
 import jwt from "jwt-decode";
 import './App.css';
+import Loading from "../../components/Loading/Loading";
 
 // Ping query
 const PING_ACTION_QUERY = gql`
@@ -70,7 +71,7 @@ export const App = () => {
 
                                     ? <Welcome sx={{ mb: 50 }}  decodeToken={decodeToken}/>
 
-                                    : "loading time..."}
+                                    : <Loading />}
 
                         </Page>} path="/" default />
 

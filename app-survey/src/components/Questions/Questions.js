@@ -19,6 +19,7 @@ import Page from "../Page";
 import { Logout } from "../../features/app/Logout";
 import axios from 'axios';
 import { useQuery, gql } from "../../services/hasura-client";
+import Loading from "../Loading/Loading";
 
 
 const BASE_URL = "https://8080-prilloandre-skillmatrix-9agzc4s1eqm.ws-eu53.gitpod.io/v1/graphql";
@@ -357,7 +358,7 @@ const questions = useQuery("QuestionAction", QUESTION_ACTION_QUERY,
             Your progress is {index + 1 } / {maxLength + 1}
           </Container>
         ) : (
-          "loading time..."
+          <Loading />
         )}
       </Page>
     </>

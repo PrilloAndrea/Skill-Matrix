@@ -4,6 +4,7 @@ import { useQuery, gql } from "../../services/hasura-client";
 
 
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
+import Loading from '../Loading/Loading';
 
 
 
@@ -52,7 +53,7 @@ console.log(survey.data)
                                         }</h3>
                                                     </div>
 
-                                                  : "loading time..."}
+                                                  : <Loading/>}
 
                                                   <hr/>
                                                                                           
