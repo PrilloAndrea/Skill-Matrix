@@ -81,7 +81,7 @@ DO UPDATE SET
 --Insert into table questions
 
 
- INSERT INTO "public"."questions" ("etag","board_id","type","data")
+ INSERT INTO "public"."questions" ("etag","survey_id","type","data")
 
  VALUES (clock_timestamp() , 1 , 'type1' , '{ "Question": "How are you?"}' ),
  (clock_timestamp() , 1 , 'type2' , '{ "Question" : "Whats day is today?", "Answers" : { "Answer1" : {"Answer":"Monday","Score":25},"Answer2" : {"Answer":"Tuesday","Score":50},"Answer3":{"Answer":"Saturday","Score":75},"Answer4":{"Answer":"Wenesday","Score":100}}}' ),
