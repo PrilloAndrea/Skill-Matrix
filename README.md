@@ -121,6 +121,22 @@ Day 7
 • After we created the mutation of the post query. We faced an error on the mutation on the foreign_key and for this we had to do some changes on our tables and then the mutation worked fine.
 
 • Another error we faced was “Network error” because we had the endpoint of hasura wrong. It took some times for us to find out the right one. First I tried the endpoint I found in docker-compose.yml file but it didn’t work, then I tried the one that is showed at hasura localhost and everything worked fine. To be sure why the endpoint from docker-compose.yml file didn’t work I tried to  run the project on my VScode not on gitpod and it worked fine. 
-•	Now we have to find a way to set the variables of the createAnswer query to be set by the program and not by us giving it some values. 
+•Now we have to find a way to set the variables of the createAnswer query to be set by the program and not by us giving it some values. 
 
+
+#############################################################################################################################################################33
+
+Day 8
+
+•On this day I worked on decoding the token to JSON and then recreating the queries with the condition if the survey_id equals the survey_id we get from token. I faced many difficulties on the way but I managed to do that.
+
+•At the first I tried to decode the token at AuthLogin page, at this point I faced an error that because I get the token by input change and when I decoded it only worked if you pass the full token on input. To solve this I used a timeout function and it worked. 
+
+
+•Then I searched to find a way to pass this data to App.js component by it was unsuccessful. I asked for help to our mentor Enea and he told me that I didn’t have to pass the decoded token, because it was already saved in local Storage and I just needed to get it at App.js because it is a global state.
+
+•Trying to decode token at App.js I thought to do it by using useEffect and setting the data by useState inside useEffect, but it give me an error that it didn’t updated the state. It was a very confusing error because I have used useState inside useEffect and it worked find. I searched a lot for this problem but in the end Rezart told me just to let it only with useState and it of course it worked.
+
+
+•After I handled to decode token, I recreated the query and the logic I wanted to implement worked fine.  
 
