@@ -12,6 +12,7 @@ import {
   Typography,
   Rating,
   Container,
+  LinearProgress,
   Grid
 } from "@mui/material";
 import { useState } from "react";
@@ -28,8 +29,7 @@ import QuestionType3 from "./QuestionType3";
 import QuestionType4 from "./QuestionType4";
 
 
-const BASE_URL =
-  "https://8080-prilloandre-skillmatrix-okqhuy4swbm.ws-eu53.gitpod.io/v1/graphql";
+const BASE_URL ="https://8080-prilloandre-skillmatrix-xi6bfyo0lms.ws-eu53.gitpod.io/v1/graphql";
 const ADMIN_SECRET = "hasura";
 
 const Questions = (props) => {
@@ -120,6 +120,9 @@ const Questions = (props) => {
     setValue(0);
   };
 
+  //Normalise value for progres line
+  const normalise = (value) => ((value - 0) * 100) / (maxLength - 0);
+
   return (
     <>
       <Page withPadding title={"Survey App"} actions={<Logout />}>
@@ -192,6 +195,7 @@ const Questions = (props) => {
             <br />
             <hr />
             Your progress is {index + 1} / {maxLength + 1}
+            <LinearProgress variant="determinate" value={normalise(index)}>  </LinearProgress>
           </Container>
         ) : (
           <Loading />
