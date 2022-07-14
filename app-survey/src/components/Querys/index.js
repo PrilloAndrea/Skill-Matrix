@@ -4,8 +4,8 @@ import { gql } from "../../services/hasura-client";
 
 // Results query
 export const RESULTS_ACTION_QUERY = gql`
-query getResults($user_id: Int!) {
-  results(where: {user_id: {_eq: $user_id}}) {
+query getResults($user_id: Int!, $survey_id: Int!) {
+  results(where: {user_id: {_eq: $user_id}, _and: {survey_id: {_eq: $survey_id}}}) {
     question_id
     survey_id
     user_id

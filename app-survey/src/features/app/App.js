@@ -50,7 +50,8 @@ export const App = () => {
 const results = useQuery("QuestionAction", query.RESULTS_ACTION_QUERY,
  {
   variables: {
-    user_id: parseInt(decodeToken['https://hasura.io/jwt/claims']['x-hasura-user-id'])
+    user_id: parseInt(decodeToken['https://hasura.io/jwt/claims']['x-hasura-user-id']),
+    survey_id: parseInt(decodeToken['https://hasura.io/jwt/claims']['x-hasura-survey-id'])
   }
  });
 
