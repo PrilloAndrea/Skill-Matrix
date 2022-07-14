@@ -83,7 +83,8 @@ DO UPDATE SET
 
  INSERT INTO "public"."questions" ("etag","survey_id","type","data")
 
- VALUES (clock_timestamp() , 1 , 'type1' , '{ "Question": "How are you?"}' ),
- (clock_timestamp() , 1 , 'type2' , '{ "Question" : "Whats day is today?", "Answers" : { "Answer1" : {"Answer":"Monday","Score":25},"Answer2" : {"Answer":"Tuesday","Score":50},"Answer3":{"Answer":"Saturday","Score":75},"Answer4":{"Answer":"Wenesday","Score":100}}}' ),
- (clock_timestamp() , 1 , 'type3' , '{ "Question" : "Who is your hero?", "Answers" : { "Answer1":{"Answer":"True","Score":100},"Answer2":{"Answer":"False","Score":0}}}' ),
- (clock_timestamp() , 1 , 'type4' , '{ "Question" : "If you could live anywhere, where would it be?", "Answers": { "Answer1" : {"Answer":"America","Score":25}, "Answer2" : {"Answer":"Germany","Score":50}, "Answer3" : {"Answer":"Australia","Score":75},"Answer4" : {"Answer":"Canada","Score":100}}}' );
+ VALUES (clock_timestamp() , 1 , 'type1' , '{ "Question": "How was this experience?"}' ),
+ (clock_timestamp() , 1 , 'type2' , '{ "Question" : "Whats favourite programming language?", "Answers" : { "Answer1" : {"Answer":"Javascript","Score":25},"Answer2" : {"Answer":"Java","Score":50},"Answer3":{"Answer":"C++","Score":75},"Answer4":{"Answer":"Python","Score":100}}}' ),
+ (clock_timestamp() , 1 , 'type3' , '{ "Question" : "Did you liked react?", "Answers" : { "Answer1":{"Answer":"Yes","Score":100},"Answer2":{"Answer":"No","Score":0}}}' ),
+ (clock_timestamp() , 1 , 'type4' , '{ "Question" : "Whats your favourite javascript library?", "Answers": { "Answer1" : {"Answer":"jQuery","Score":25}, "Answer2" : {"Answer":"React","Score":50}, "Answer3" : {"Answer":"Lodash","Score":75},"Answer4" : {"Answer":"Chart","Score":100}}}' )
+ ;
