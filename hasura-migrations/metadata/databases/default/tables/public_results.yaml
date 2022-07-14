@@ -1,0 +1,14 @@
+table:
+  name: results
+  schema: public
+select_permissions:
+  - role: form
+    permission:
+      columns:
+        - question_id
+        - survey_id
+        - user_id
+        - data
+        - score
+        - type
+      filter: {}

@@ -3,6 +3,7 @@
 - "!include public_boards_admins.yaml"
 - "!include public_invites.yaml"
 - "!include public_questions.yaml"
+- "!include public_results.yaml"
 - "!include public_surveys.yaml"
 - "!include public_surveys_questions.yaml"
 - "!include public_users.yaml"

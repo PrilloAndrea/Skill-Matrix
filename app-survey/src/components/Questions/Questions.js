@@ -193,7 +193,6 @@ const Questions = (props) => {
             </div>
             <br />
             <br />
-            <hr />
             Your progress is {index + 1} / {maxLength + 1}
             <LinearProgress variant="determinate" value={normalise(index)}>  </LinearProgress>
           </Container>

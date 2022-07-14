@@ -49,7 +49,7 @@ query {
 
 
 
-
+  // Post Answer query
   export const ANSWER_ACTION_QUERY = gql`
         mutation createAnswer($question_id: Int!, $board_id: Int!, $survey_id: Int!, $user_id: Int!, $question_etag: timestamptz, $score: smallint!, $data: json) {
   

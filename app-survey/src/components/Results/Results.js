@@ -33,7 +33,12 @@ const Results = (props) => {
                     <td>{results.user_id}</td>
                     <td>{results.question_id}</td>
                     <td>{results.data.Question}</td>
-                    <td>{results.score}</td>
+                    {
+                      results.type === "type1"
+                      ?<td>{results.score}/5</td>
+                      :<td>{results.score}/100</td>
+                    }
+                    
                   </tr>
                 ))}
               </tbody>
