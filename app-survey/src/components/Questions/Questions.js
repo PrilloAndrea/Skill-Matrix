@@ -29,7 +29,7 @@ import QuestionType3 from "./QuestionType3";
 import QuestionType4 from "./QuestionType4";
 
 
-const BASE_URL ="https://8080-prilloandre-skillmatrix-xi6bfyo0lms.ws-eu53.gitpod.io/v1/graphql";
+const BASE_URL ="https://8080-prilloandre-skillmatrix-0910g9gsi2q.ws-eu53.gitpod.io/v1/graphql";
 const ADMIN_SECRET = "hasura";
 
 const Questions = (props) => {

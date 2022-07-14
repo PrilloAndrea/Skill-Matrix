@@ -2,7 +2,7 @@ import Page from "../Page";
 import { Logout } from "../../features/app/Logout";
 import Loading from "../Loading/Loading";
 import { useState } from "react";
-import { Button , Box} from "@mui/material";
+import { Button , Box,Grid} from "@mui/material";
 import PlayCircleFilledWhiteIcon from "@mui/icons-material/PlayCircleFilledWhite";
 const Results = (props) => {
   console.log(props);
@@ -49,18 +49,37 @@ const Results = (props) => {
         </Page>
       ) : (
         <Page withPadding title={"Survey App"} actions={<Logout />}>
-          <Box>
-            <h1>You have submited with success this survey</h1>
-            <Button
-              variant="contained"
-              endIcon={<PlayCircleFilledWhiteIcon />}
-              onClick={() => {
-                setBtn(true);
-              }}
-            >
-              View Results
-            </Button>
-          </Box>
+          <Grid container
+
+spacing={0}
+
+direction="column"
+
+alignItems="center"
+
+justifyContent="center">
+
+<h1>You have submited with success this survey</h1>
+
+<Button
+
+  variant="contained"
+
+  endIcon={<PlayCircleFilledWhiteIcon />}
+
+  onClick={() => {
+
+    setBtn(true);
+
+  }}
+
+>
+
+  View Results
+
+</Button>
+
+</Grid>
         </Page>
       )}
     </>
