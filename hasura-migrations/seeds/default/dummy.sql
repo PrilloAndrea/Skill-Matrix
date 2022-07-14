@@ -87,4 +87,9 @@ DO UPDATE SET
  (clock_timestamp() , 1 , 'type2' , '{ "Question" : "Whats favourite programming language?", "Answers" : { "Answer1" : {"Answer":"Javascript","Score":25},"Answer2" : {"Answer":"Java","Score":50},"Answer3":{"Answer":"C++","Score":75},"Answer4":{"Answer":"Python","Score":100}}}' ),
  (clock_timestamp() , 1 , 'type3' , '{ "Question" : "Did you liked react?", "Answers" : { "Answer1":{"Answer":"Yes","Score":100},"Answer2":{"Answer":"No","Score":0}}}' ),
  (clock_timestamp() , 1 , 'type4' , '{ "Question" : "Whats your favourite javascript library?", "Answers": { "Answer1" : {"Answer":"jQuery","Score":25}, "Answer2" : {"Answer":"React","Score":50}, "Answer3" : {"Answer":"Lodash","Score":75},"Answer4" : {"Answer":"Chart","Score":100}}}' )
+ (clock_timestamp() , 1 , 'type1' , '{ "Question": "How was your day?"}' ),
+ (clock_timestamp() , 1 , 'type2' , '{ "Question" : "Whats favourite subject?", "Answers" : { "Answer1" : {"Answer":"Math","Score":25},"Answer2" : {"Answer":"Chemistry","Score":50},"Answer3":{"Answer":"English","Score":75},"Answer4":{"Answer":"Science","Score":100}}}' ),
+ (clock_timestamp() , 1 , 'type3' , '{ "Question" : "Do you like math?", "Answers" : { "Answer1":{"Answer":"Yes","Score":100},"Answer2":{"Answer":"No","Score":0}}}' ),
+ (clock_timestamp() , 1 , 'type4' , '{ "Question" : "Whats your favourite country?", "Answers": { "Answer1" : {"Answer":"Germany","Score":25}, "Answer2" : {"Answer":"Italy","Score":50}, "Answer3" : {"Answer":"England","Score":75},"Answer4" : {"Answer":"Spain","Score":100}}}' )
+ 
  ;
