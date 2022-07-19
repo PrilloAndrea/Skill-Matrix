@@ -20,6 +20,7 @@ import Page from "../Page";
 import { Logout } from "../../features/app/Logout";
 import axios from "axios";
 import { useQuery, gql } from "../../services/hasura-client";
+import { useMutation } from "../../services/hasura-client/use-mutation";
 import Loading from "../Loading/Loading";
 import { useNavigate } from "react-router-dom";
 import * as query from "../Querys";
@@ -78,38 +79,25 @@ const Questions = (props) => {
     setValue(newAValue);
   };
 
+
+
+  const answerMutation = useMutation(query.ANSWER_ACTION_QUERY, {
+    variables: {
+      question_id: index + 1,
+      board_id: questions?.data?.questions?.[index].survey.board_id,
+      survey_id: questions?.data?.questions?.[index].survey_id,
+      user_id: 1,
+      question_etag: "2016-07-20T17:30:15+05:30",
+      score: value,
+      data: "temp"
+    }
+  });
+
   // Save answer function
   const save = () => {
     handleNext();
     console.log("start");
-    axios({
-      url: BASE_URL,
-      method: "POST",
-      headers: {
-        "x-hasura-admin-secret": ADMIN_SECRET
-      },
-      data: {
-        variables: {
-          question_id: index + 1,
-          board_id: questions?.data?.questions?.[index].survey.board_id,
-          survey_id: questions?.data?.questions?.[index].survey_id,
-          user_id: parseInt(
-            props?.decodeToken["https://hasura.io/jwt/claims"][
-              "x-hasura-user-id"
-            ]
-          ),
-          question_etag: "2016-07-20T17:30:15+05:30",
-          score: value,
-          data: "temp"
-        },
-        query: query.ANSWER_ACTION_QUERY
-      }
-    })
-      .then((res) => console.log(res.data))
-      .catch((err) => {
-        console.log(err);
-      });
-
+    answerMutation.mutate();
     console.log("end");
     setValue(0);
   };
