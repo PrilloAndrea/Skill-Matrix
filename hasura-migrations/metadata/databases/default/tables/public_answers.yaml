@@ -24,3 +24,48 @@ object_relationships:
   - name: user
     using:
       foreign_key_constraint_on: user_id
+insert_permissions:
+  - role: form
+    permission:
+      check: {}
+      columns:
+        - id
+        - board_id
+        - question_id
+        - survey_id
+        - user_id
+        - data
+        - score
+        - notes
+        - created_at
+        - question_etag
+        - updated_at
+select_permissions:
+  - role: form
+    permission:
+      columns:
+        - id
+        - board_id
+        - question_id
+        - survey_id
+        - user_id
+        - data
+        - score
+        - notes
+        - created_at
+        - question_etag
+        - updated_at
+      filter:
+        id:
+          _eq: x-hasura-survey-id
+update_permissions:
+  - role: form
+    permission:
+      columns:
+        - score
+      filter:
+        id:
+          _eq: x-hasura-survey-id
+      check:
+        question_id:
+          _is_null: false

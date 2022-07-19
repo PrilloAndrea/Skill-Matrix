@@ -37,4 +37,6 @@ select_permissions:
         - created_at
         - opens_at
         - updated_at
-      filter: {}
+      filter:
+        id:
+          _eq: x-hasura-survey-id

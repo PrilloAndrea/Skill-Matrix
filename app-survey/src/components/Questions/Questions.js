@@ -39,6 +39,12 @@ const Questions = (props) => {
   const questions = useQuery("QuestionAction", query.QUESTION_ACTION_QUERY);
   console.log(questions?.data);
 
+
+  // Get UserLOgin query
+  console.log(props);
+  const user = useQuery("UserAction", query.User_ACTION_QUERY);
+  console.log(user?.data);
+
   // ReactQuery getQuestions by props
   console.log(questions?.data?.questions);
 
@@ -86,7 +92,7 @@ const Questions = (props) => {
       question_id: index + 1,
       board_id: questions?.data?.questions?.[index].survey.board_id,
       survey_id: questions?.data?.questions?.[index].survey_id,
-      user_id: 1,
+      user_id: user?.data?.users[0]?.id,
       question_etag: "2016-07-20T17:30:15+05:30",
       score: value,
       data: "temp"

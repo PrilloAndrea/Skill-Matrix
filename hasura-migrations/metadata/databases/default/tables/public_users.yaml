@@ -23,3 +23,12 @@ array_relationships:
         table:
           name: invites
           schema: public
+select_permissions:
+  - role: form
+    permission:
+      columns:
+        - id
+        - name
+      filter:
+        id:
+          _eq: x-hasura-user-id

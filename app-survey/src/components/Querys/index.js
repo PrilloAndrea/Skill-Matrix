@@ -42,6 +42,17 @@ query {
 `;
 
 
+// GetLoginUser  query
+export const User_ACTION_QUERY = gql`
+query GetLoginUser {
+  users {
+    id
+    name
+  }
+}
+`;
+
+
 
   // Get Questions query
   export const QUESTION_ACTION_QUERY = gql`
