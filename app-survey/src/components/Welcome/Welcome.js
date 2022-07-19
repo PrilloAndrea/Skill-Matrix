@@ -1,7 +1,7 @@
 import { Button } from '@mui/material';
 import moment from "moment";
 import { useQuery, gql } from "../../services/hasura-client";
-
+import { Link } from 'react-router-dom';
 
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
 import Loading from '../Loading/Loading';
@@ -12,26 +12,18 @@ const Welcome = (props) => {
 
 
   const SURVEY_ACTION_QUERY = gql`
-query GetSurvey($id : Int!) {
-  surveys(where: {id: {_eq: $id}}) {
-    opens_at
-    closes_at
-    id
+  query GetSurvey {
+    surveys{
+      opens_at
+      closes_at
+      id
+    }
   }
-}
 
 `;
-console.log(props?.decodeToken)
-// console.log(props.decodeToken['https://hasura.io/jwt/claims']['x-hasura-survey-id'])
-
 
 // ReactQuery getSyrvey
-const survey = useQuery("SurveyAction", SURVEY_ACTION_QUERY,
-{
- variables: {
-   id: parseInt(props?.decodeToken['https://hasura.io/jwt/claims']['x-hasura-survey-id'])
- }
-});
+const survey = useQuery("SurveyAction", SURVEY_ACTION_QUERY);
 console.log(survey.isSuccess)
 console.log(survey.data)
 
@@ -58,7 +50,7 @@ console.log(survey.data)
                                                   <hr/>
                                                                                           
 
-                                          <Button variant="contained" endIcon={<PlayCircleFilledWhiteIcon /> } href="/questions">
+                                          <Button component={Link} to="/questions" variant="contained" endIcon={<PlayCircleFilledWhiteIcon /> } onClick={() => {window.location.href="/questions"}}>
 
                                             Start
 
