@@ -5,25 +5,16 @@ import { Link } from 'react-router-dom';
 
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
 import Loading from '../Loading/Loading';
+import * as query from "../Querys";
 
 
 
 const Welcome = (props) => {
 
 
-  const SURVEY_ACTION_QUERY = gql`
-  query GetSurvey {
-    surveys{
-      opens_at
-      closes_at
-      id
-    }
-  }
-
-`;
 
 // ReactQuery getSyrvey
-const survey = useQuery("SurveyAction", SURVEY_ACTION_QUERY);
+const survey = useQuery("SurveyAction", query.SURVEY_ACTION_QUERY);
 console.log(survey.isSuccess)
 console.log(survey.data)
 
@@ -50,7 +41,7 @@ console.log(survey.data)
                                                   <hr/>
                                                                                           
 
-                                          <Button component={Link} to="/questions" variant="contained" endIcon={<PlayCircleFilledWhiteIcon /> } onClick={() => {window.location.href="/questions"}}>
+                                          <Button component={Link} to="/questions" variant="contained" endIcon={<PlayCircleFilledWhiteIcon /> } >
 
                                             Start
 

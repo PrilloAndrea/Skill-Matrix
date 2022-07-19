@@ -66,7 +66,7 @@ const results = useQuery("QuestionAction", query.RESULTS_ACTION_QUERY,
 
                                 {isSuccess
 
-                                    ? <Welcome sx={{ mb: 50 }}  decodeToken={decodeToken}/>
+                                    ? <Welcome sx={{ mb: 50 }} />
 
                                     : <Loading />}
 

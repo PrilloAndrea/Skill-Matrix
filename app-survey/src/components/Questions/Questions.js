@@ -35,13 +35,7 @@ const ADMIN_SECRET = "hasura";
 const Questions = (props) => {
   // Get Questions query
   console.log(props);
-  const questions = useQuery("QuestionAction", query.QUESTION_ACTION_QUERY, {
-    variables: {
-      id: parseInt(
-        props?.decodeToken["https://hasura.io/jwt/claims"]["x-hasura-survey-id"]
-      )
-    }
-  });
+  const questions = useQuery("QuestionAction", query.QUESTION_ACTION_QUERY);
   console.log(questions?.data);
 
   // ReactQuery getQuestions by props

@@ -2,6 +2,20 @@
 import { gql } from "../../services/hasura-client";
 
 
+// Survey query
+export const SURVEY_ACTION_QUERY = gql`
+query GetSurvey {
+  surveys{
+    opens_at
+    closes_at
+    id
+  }
+}
+
+`;
+
+
+
 // Results query
 export const RESULTS_ACTION_QUERY = gql`
 query getResults($user_id: Int!, $survey_id: Int!) {
@@ -31,8 +45,8 @@ query {
 
   // Get Questions query
   export const QUESTION_ACTION_QUERY = gql`
-  query getQuestions($id: Int!) {
-    questions(where: {survey_id: {_eq: $id}}) {
+  query getQuestions{
+    questions{
       data
       etag
       id
@@ -44,6 +58,7 @@ query {
       }
     }
   }
+  
   
   `;
 
