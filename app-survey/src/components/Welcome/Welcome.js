@@ -13,10 +13,7 @@ const Welcome = (props) => {
 
 
 
-// ReactQuery getSyrvey
-const survey = useQuery("SurveyAction", query.SURVEY_ACTION_QUERY);
-console.log(survey.isSuccess)
-console.log(survey.data)
+console.log(props)
 
 
     return (
@@ -28,11 +25,11 @@ console.log(survey.data)
                                           <h3>You are pleased to fill this form invited by Backoffice. </h3>
                                           
 
-                                          {survey?.isSuccess
+                                          {props.survey?.isSuccess
 
                                                   ? <div>
                                                       <h3>You may fill this form {
-                                          moment(survey.data?.surveys[0].closes_at).fromNow()     
+                                          moment(props.survey.data?.surveys[0].closes_at).fromNow()     
                                         }</h3>
                                                     </div>
 

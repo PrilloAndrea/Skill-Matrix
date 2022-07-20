@@ -5,7 +5,6 @@ import { Routes, Route } from "react-router-dom";
 import Welcome from "../../components/Welcome/Welcome";
 import Questions from "../../components/Questions/Questions";
 import { useEffect, useState } from "react";
-import jwt from "jwt-decode";
 import './App.css';
 import Loading from "../../components/Loading/Loading";
 import Results from "../../components/Results/Results";
@@ -22,39 +21,26 @@ export const App = () => {
  console.log(data);
 
 
- //Decode Token
- const token = localStorage.getItem("at");
- const [decodeToken ,setDecodeToken] = useState(jwt(token))
-
- // Get Token from localStorage
-//  useEffect(() => {
-
-    //  const codedToken=jwt(token);
-    //  setDecodeToken(codedToken);
-    //  console.log(parseInt(decodeToken['https://hasura.io/jwt/claims']['x-hasura-survey-id']))
-//  }, []);
-
-// useEffect(()=> {
-//   console.log(decodeToken);
-// }, [decodeToken]) 
-
-//  console.log(decodeToken['https://hasura.io/jwt/claims']['x-hasura-survey-id'])
-
- // ReactQuery getQuestions
-
-// parseInt(decodeToken['https://hasura.io/jwt/claims']['x-hasura-survey-id'])
-
+  // Get UserLOgin query
+  const user = useQuery("UserAction", query.User_ACTION_QUERY);
+  console.log(user?.data);
+ 
+  // ReactQuery getSyrvey
+  const survey = useQuery("SurveyAction", query.SURVEY_ACTION_QUERY);
+  console.log(survey.isSuccess)
+  console.log(survey.data);
 
 
  // ReactQuery getResults
 const results = useQuery("QuestionAction", query.RESULTS_ACTION_QUERY,
  {
   variables: {
-    user_id: parseInt(decodeToken['https://hasura.io/jwt/claims']['x-hasura-user-id']),
-    survey_id: parseInt(decodeToken['https://hasura.io/jwt/claims']['x-hasura-survey-id'])
+    user_id: user?.data?.users[0]?.id,
+    survey_id: survey.data?.surveys[0].id
   }
  });
 
+ 
   return (
     <div>
 
@@ -66,7 +52,7 @@ const results = useQuery("QuestionAction", query.RESULTS_ACTION_QUERY,
 
                                 {isSuccess
 
-                                    ? <Welcome sx={{ mb: 50 }} />
+                                    ? <Welcome survey={survey} sx={{ mb: 50 }} />
 
                                     : <Loading />}
 
@@ -76,12 +62,12 @@ const results = useQuery("QuestionAction", query.RESULTS_ACTION_QUERY,
 
         <Route element={
 
-                      <Questions decodeToken={decodeToken} />} path="/questions" />
+                      <Questions user={user} />} path="/questions" />
         
 
         <Route element={
 
-                        <Results decodeToken={decodeToken} results={results} />} path="/results" />
+                        <Results  results={results} />} path="/results" />
 
          
 

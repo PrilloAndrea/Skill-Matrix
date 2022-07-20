@@ -40,11 +40,6 @@ const Questions = (props) => {
   console.log(questions?.data);
 
 
-  // Get UserLOgin query
-  console.log(props);
-  const user = useQuery("UserAction", query.User_ACTION_QUERY);
-  console.log(user?.data);
-
   // ReactQuery getQuestions by props
   console.log(questions?.data?.questions);
 
@@ -92,7 +87,7 @@ const Questions = (props) => {
       question_id: index + 1,
       board_id: questions?.data?.questions?.[index].survey.board_id,
       survey_id: questions?.data?.questions?.[index].survey_id,
-      user_id: user?.data?.users[0]?.id,
+      user_id: props.user?.data?.users[0]?.id,
       question_etag: "2016-07-20T17:30:15+05:30",
       score: value,
       data: "temp"
@@ -112,7 +107,7 @@ const Questions = (props) => {
   const normalise = (value) => ((value - 0) * 100) / (maxLength - 0);
 
   return (
-    <>
+    <div> 
       <Page withPadding title={"Survey App"} actions={<Logout />}>
         {questions?.isSuccess ? (
           <Container maxWidth="sm">
@@ -188,7 +183,7 @@ const Questions = (props) => {
           <Loading />
         )}
       </Page>
-    </>
+    </div>
   );
 };
 
